@@ -12,7 +12,7 @@ import org.specs2.{ScalaCheck, Specification}
 import org.typelevel.discipline.specs2.Discipline
 
 class BadMonadLawsSpec extends Specification with ScalaCheck with Discipline { def is = s2"""
-  Bad monad laws
+  BadMonad laws
     $badMonadMonadLaws
   """
 
