@@ -1,11 +1,14 @@
 package badmonad
 
+import cats.kernel.Eq
 import cats.{Applicative, Eval, Monad, Traverse}
 import cats.syntax.functor._
 
 object instances {
   implicit val instancesForBadMonad: Monad[BadMonad] with Traverse[BadMonad] =
     new MonadForBadMonad with TraverseForBadMonad
+
+  implicit def eqForBadMonad[A: Eq]: Eq[BadMonad[A]] = Eq.by(_.x)
 
   private trait MonadForBadMonad extends Monad[BadMonad] {
     override def pure[A](x: A): BadMonad[A] = BadMonad(x)
