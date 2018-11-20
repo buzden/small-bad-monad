@@ -10,14 +10,18 @@ object instances {
 
   implicit def eqForBadMonad[A: Eq]: Eq[BadMonad[A]] = Eq.by(_.x)
 
+  private def absurd[A]: A = {
+    while (true) {}
+    throw new Exception
+  }
+
   private trait MonadForBadMonad extends Monad[BadMonad] {
     override def pure[A](x: A): BadMonad[A] = BadMonad(x)
 
     override def flatMap[A, B](fa: BadMonad[A])(f: A => BadMonad[B]): BadMonad[B] = f(fa.x)
 
-    // Infinitely looping
     override def tailRecM[A, B](a: A)(f: A => BadMonad[Either[A, B]]): BadMonad[B] =
-      tailRecM(a)(f)
+      absurd
   }
 
   private trait TraverseForBadMonad extends Traverse[BadMonad] {
