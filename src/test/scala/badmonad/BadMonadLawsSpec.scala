@@ -7,11 +7,12 @@ import cats.instances.tuple._
 import cats.laws.discipline.MonadTests
 import org.scalacheck.Arbitrary
 import org.scalacheck.Arbitrary.arbitrary
+import org.specs2.specification.ExamplesTimeout
 import org.specs2.specification.core.Fragments
 import org.specs2.{ScalaCheck, Specification}
 import org.typelevel.discipline.specs2.Discipline
 
-class BadMonadLawsSpec extends Specification with ScalaCheck with Discipline { def is = s2"""
+object BadMonadLawsSpec extends Specification with ScalaCheck with Discipline with ExamplesTimeout { def is = s2"""
   BadMonad laws
     $badMonadMonadLaws
   """
