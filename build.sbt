@@ -17,7 +17,6 @@ addCompilerPlugin("org.spire-math" %% "kind-projector" % "0.9.9")
 
 // Testing stuff
 libraryDependencies ++= Seq(
-  "org.specs2" %% "specs2-core" % specs2Version % Test,
   "org.specs2" %% "specs2-scalacheck" % specs2Version % Test,
   "org.typelevel" %% "cats-laws" % catsVersion % Test,
 )
